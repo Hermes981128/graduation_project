@@ -10,7 +10,7 @@
 
 [KongoHuster/FlowIdentification: 在线流量识别系统 (github.com)](https://github.com/KongoHuster/FlowIdentification)
 
-
+**相关文章**
 
 [ SSL协议原理详解_曹世宏的博客-CSDN博客_ssl协议](https://blog.csdn.net/qq_38265137/article/details/90112705)
 
@@ -21,20 +21,6 @@
 [SSL/TLS协议运行机制的概述 - 阮一峰的网络日志 (ruanyifeng.com)](http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html)
 
 [网络入侵检测系统之加密流量识别 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/426346378)
-
-SSL (Secure Sockets Layer）安全套接层。	
-
-**SSL在协议层中的位置**
-
-
-
-![](https://img-blog.csdnimg.cn/2019051117402024.png)
-
-
-
-**握手阶段的详细过程**
-
-![img](http://www.ruanyifeng.com/blogimg/asset/201402/bg2014020502.png)
 
 
 
