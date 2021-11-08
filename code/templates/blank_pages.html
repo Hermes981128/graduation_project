@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>空白页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <link rel="icon" type="image/x-icon" href="https://hermes981128.oss-cn-shanghai.aliyuncs.com/meetrainbow.ico"/>
+    <link rel="stylesheet" href="http://wang981128.gitee.io/graduation_design/amis/sdk.css"/>
+    <link rel="stylesheet" href="http://wang981128.gitee.io/graduation_design/amis/helper.css"/>
+    <link rel="stylesheet" href="http://wang981128.gitee.io/graduation_design/amis/iconfont.css"/>
+    <style>
+        html,
+        body,
+        .app-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root" class="app-wrapper"></div>
+<script src="http://wang981128.gitee.io/graduation_design/amis/sdk.js"></script>
+<script type="text/javascript">
+    (function () {
+        let amis = amisRequire('amis/embed');
+        let amisJSON =
+            {
+                type: 'page',
+                body: [{
+                    "type": "card",
+                    "header": {
+                        "title": "空白调试页面",
+                        "subTitle": "空白调试页面",
+                        "description": "空白调试页面",
+                        "avatarClassName": "pull-left thumb-md avatar b-3x m-r",
+                        "avatar": "https://hermes981128.oss-cn-shanghai.aliyuncs.com/meetrainbow.ico"
+                    },
+                    "body": "空白调试页面",
+                    "actions": [
+                        {
+                            "type": "button",
+                            "label": "编辑",
+                            "actionType": "dialog",
+                            "dialog": {
+                                "title": "编辑",
+                                "body": "你正在编辑该卡片"
+                            }
+                        },
+                        {
+                            "type": "button",
+                            "label": "删除",
+                            "actionType": "dialog",
+                            "dialog": {
+                                "title": "提示",
+                                "body": "你删掉了该卡片"
+                            }
+                        }
+                    ]
+                }]
+            }
+        let amisScoped = amis.embed('#root', amisJSON);
+    })();
+</script>
+</body>
+
+</html>
