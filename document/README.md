@@ -12,7 +12,19 @@
 
 [pythonran/Pcap_tools: 网络流量可配置嗅探，流量包解析，漏洞规则扫描，生成报告. ....搞网络安全这块，还凑合着用吧 (github.com)](https://github.com/pythonran/Pcap_tools)
 
+[HatBoy/Pcap-Analyzer: Python编写的可视化的离线数据包分析器 (github.com)](https://github.com/HatBoy/Pcap-Analyzer)	
+
+
+
+**参考文档**
+
+[ python3使用winpcap_凌波微分的博客-CSDN博客_python winpcap](https://blog.csdn.net/weixin_43673352/article/details/103729723)
+
+
+
 **相关文章**
+
+[Protocol Numbers 对照表](http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
 
 [ SSL协议原理详解_曹世宏的博客-CSDN博客_ssl协议](https://blog.csdn.net/qq_38265137/article/details/90112705)
 

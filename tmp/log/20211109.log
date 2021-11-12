@@ -1,0 +1,4 @@
+INFO : 2021-11-09 09:46:05,693 - pcap.py[line:15]: This is info message
+WARNING : 2021-11-09 09:46:05,693 - pcap.py[line:16]: This is warning message
+INFO : 2021-11-09 09:46:05,694 - pcap.py[line:18]: 当前机器上有以下网卡
+INFO : 2021-11-09 09:46:06,336 - pcap.py[line:19]: {'\\Device\\NPF_{E1F1A70E-DAC6-4320-ACA2-88F48485FA4A}': 'Microsoft', '\\Device\\NPF_{2BB78164-A0A8-491A-8160-F8A3C18B80A3}': 'Microsoft', '\\Device\\NPF_{C3CDD4C1-97B9-49AD-995B-FC026E400580}': 'Realtek PCIe GBE Family Controller', '\\Device\\NPF_{35602A1F-85A6-4281-AD70-E84D4330E326}': 'Microsoft Corporation'}

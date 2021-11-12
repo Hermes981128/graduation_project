@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>pcap文件分析</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <link rel="icon" type="image/x-icon" href="https://hermes981128.oss-cn-shanghai.aliyuncs.com/meetrainbow.ico"/>
+    <link rel="stylesheet" href="http://wang981128.gitee.io/graduation_design/amis/sdk.css"/>
+    <link rel="stylesheet" href="http://wang981128.gitee.io/graduation_design/amis/helper.css"/>
+    <link rel="stylesheet" href="http://wang981128.gitee.io/graduation_design/amis/iconfont.css"/>
+    <style>
+        html,
+        body,
+        .app-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root" class="app-wrapper"></div>
+<script src="http://wang981128.gitee.io/graduation_design/amis/sdk.js"></script>
+<script type="text/javascript">
+    (function () {
+        let amis = amisRequire('amis/embed');
+        let amisJSON =
+            {
+                "type": "page",
+                "body": [
+                    {
+                        "type": "form",
+                        "title": "pcap文件分析",
+                        // "api": "/analysis_pcap",
+                        "target": "analysis_table",
+                        "submitText": "分析文件",
+                        "body":
+                            [
+                                {
+                                    "type": "input-file",
+                                    "name": "file",
+                                    "label": "上传pcap文件",
+                                    "accept": ".pcap",
+                                    "receiver": "api/receive_file",
+                                    "autoFill": {"file_id": "${ID}"}
+                                },
+                                {
+                                    "type": "input-text",
+                                    "name": "file_id",
+                                    "label": "文件ID"
+                                },
+
+                            ],
+                    },
+                    {
+                        "title": "pcap文件分析结果",
+                        "type": "crud",
+                        "name": "analysis_table",
+                        "api": {
+                            "method": "POST",
+                            "url": "analysis_pcap",
+                            "data": {
+                                "file_id": "${file_id}"
+                            },
+                        },
+                        "syncLocation": false,
+                        "columns": [
+                            {
+                                "name": "src",
+                                "label": "src"
+                            },
+                            {
+                                "name": "sport",
+                                "label": "sport"
+                            },
+                            {
+                                "name": "dst",
+                                "label": "dst"
+                            },
+                            {
+                                "name": "dport",
+                                "label": "dport"
+                            },
+                            {
+                                "type": "operation",
+                                "label": "操作",
+                                "buttons": [{
+                                    "level": "link",
+                                    "label": "查看详情",
+                                    "actionType": "dialog",
+                                    "dialog": {
+                                        "title": "查看详情",
+                                        "body": {
+                                            "type": "form",
+                                            "body": [
+                                                {
+                                                    "label": "src",
+                                                    "name": "src",
+                                                    "type": "static"
+                                                },
+                                                {
+                                                    "name": "dst",
+                                                    "label": "dst",
+                                                    "type": "static"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                                ]
+                            }
+                        ]
+                    }
+
+                ]
+            }
+        let amisScoped = amis.embed('#root', amisJSON);
+    })
+    ();
+</script>
+</body>
+
+</html>
