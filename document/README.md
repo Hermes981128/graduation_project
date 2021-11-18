@@ -20,7 +20,7 @@
 
 [ python3使用winpcap_凌波微分的博客-CSDN博客_python winpcap](https://blog.csdn.net/weixin_43673352/article/details/103729723)
 
-
+[ Python: 从pcap文件中提取每个TCP session的payload_我小曾就是个弟弟的博客-CSDN博客](https://blog.csdn.net/qq_29848559/article/details/90744713)
 
 **相关文章**
 
@@ -37,4 +37,17 @@
 [网络入侵检测系统之加密流量识别 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/426346378)
 
 
+
+**基础知识**
+
+TCP Flags
+
+```
+U – URG
+A – ACK
+P – PSH
+R – RST
+S – SYN
+F – FIN
+```
 

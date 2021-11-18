@@ -15,12 +15,16 @@ import time
 from tool.MysqlCommand import MysqlCommandKeepAlive
 
 
+# from winpcapy.winpcapy_types
+
 def packet_callback(win_pcap, param, header, pkt_data):
     eth = dpkt.ethernet.Ethernet(pkt_data)
+
     # # 判断是否为IP数据报
     if not isinstance(eth.data, dpkt.ip.IP):
         print("Non IP packet type not supported ", eth.data.__class__.__name__)
         return
+    F_pcap.writepkt(eth)
     # 抓IP数据包
     packet = eth.data
     # 取出分片信息
@@ -35,23 +39,25 @@ def packet_callback(win_pcap, param, header, pkt_data):
     output2 = {'src': '%d.%d.%d.%d' % tuple(packet.src), 'dst': '%d.%d.%d.%d' % tuple(packet.dst)}
     output3 = {'protocol': packet.p, 'len': packet.len}
     output4 = {'df': df, 'mf': mf, 'offset': offset, 'checksum': packet.sum, 'ttl': packet.ttl}
-    print(packet.data)
-    print("=" * 50)
-    print(output1)
-    print(output2)
-    print(output3)
-    print(output4)
-    info=output4
+    # print(packet.data)
+    # print("=" * 50)
+    # print(output1)
+    # print(output2)
+    # print(output3)
+    # print(output4)
+    info = output4
     # info = json.dumps(output4)
     command = f'''insert into graduation_design.source_data(Time, Source, Destination,Protocal, Length, Info) values ("{output1['time']}","{output2['src']}","{output2['dst']}","{output3['protocol']}","{output3['len']}","{info}")'''
-    print(command)
-    db.execute_without_return(command)
-
+    # print(command)
+    # db.execute_without_return(command)
 
 
 if __name__ == '__main__':
+    print("实时抓包并转储为pcap文件")
+    f_pcap = open("file/real-time_caught.pcap", 'wb')
+    F_pcap = dpkt.pcap.Writer(f_pcap)
     print("开始运行")
-    db = MysqlCommandKeepAlive()
+    # db = MysqlCommandKeepAlive()
     print("网卡列表：")
     list_device = WinPcapDevices.list_devices()
     device_names = []
@@ -59,5 +65,6 @@ if __name__ == '__main__':
         print(device)
         device_names.append(device[0])
 
-    device_name = device_names[int(input("请输入抓包网卡序号：")) - 1]
+    # device_name = device_names[int(input("请输入抓包网卡序号：")) - 1]
+    device_name = device_names[1]
     WinPcapUtils.capture_on_device_name(device_name=device_name, callback=packet_callback)
