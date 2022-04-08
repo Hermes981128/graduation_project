@@ -8,13 +8,23 @@
 '''
 from scapy.all import rdpcap
 
-
-packets=rdpcap("file/real-time_caught.pcap")
-
-
+packets=rdpcap("file/幻塔.pcapng")
 
 for session in packets.sessions():
     print(session)
+    print(len(session))
     for packet in packets.sessions()[session]:
-        print(repr(packet))
+        pass
+        # print(repr(packet))
     print("="*50)
+
+
+def load_pcap(pcap_file):
+    packets = rdpcap(pcap_file)
+    return packets
+
+
+
+
+
+

@@ -6,6 +6,19 @@
  @File    : test.py
  @Software: PyCharm
 '''
-import time
+import dpkt
+from base64 import b64decode
+from tool.MysqlCommand import MysqlCommand
 
-print(time.time())
+
+
+
+
+if __name__ == '__main__':
+    db=MysqlCommand()
+    command="select PktData from source_data"
+    PktDatas=[item[0] for item in db.execute_with_return(command)]
+    for PktData in PktDatas:
+        pkt_data=b64decode(PktData)
+        eth = dpkt.ethernet.Ethernet(pkt_data)
+        print(repr(eth.data))

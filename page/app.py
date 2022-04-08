@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 import os
 import uuid
 
@@ -28,13 +28,8 @@ def source_data():
     items = []
     for item in db.execute_with_return(command):
         item_dict = {}
-        item_dict["ID"] = item[0]
-        item_dict["Time"] = item[1]
-        item_dict["Source"] = item[2]
-        item_dict["Destination"] = item[3]
-        item_dict["Protocal"] = item[4]
-        item_dict["Length"] = item[5]
-        item_dict["Info"] = item[6]
+        item_dict["ID"], item_dict["Time"], item_dict["Source"], item_dict["Destination"], item_dict["Protocal"], \
+        item_dict["Length"], item_dict["Info"] = item
         items.append(item_dict)
     command = f'select COUNT(ID) from source_data {query}'
     total = db.execute_with_return(command)[0][0]
@@ -71,6 +66,49 @@ def receive_file():
     filepath = path + file_id + ".pcap"
     file.save(filepath)
     return {"status": 0, "msg": "", "data": {"value": filepath, "ID": file_id}}
+
+
+@app.route('/api/log', methods=['POST', 'GET'])
+def analysis_log():
+    """
+    返回日志流
+    :return:
+    """
+    if request.method == 'GET':
+        return {"status": 0, "msg": "", "data": {"items": []}}
+    elif request.method == 'POST':
+        type = request.json.get('type', None)
+        file_id = request.json.get('file_id')
+        if type == 'training_model' and file_id != "":
+            def generate():
+                for i in range(99):
+                    chunk = f'序号：{i}\n'
+                    yield chunk
+
+            return Response(generate(), content_type="application/octet-stream")
+    return ''
+
+
+@app.route('/test', methods=['GET'])
+def test():
+    """
+    测试页面
+    :return:
+    """
+    return render_template('test.html')
+
+
+@app.route('/training_model', methods=['GET', 'POST'])
+def training_model():
+    """
+    训练模型
+    :return:
+    """
+    if request.method == 'GET':
+        return render_template('training_model.html')
+    elif request.method == 'POST':
+        file_id = request.json["file_id"]
+        if file_id == "": return {"status": 0, "msg": "", "data": {"items": []}}
 
 
 if __name__ == '__main__':
